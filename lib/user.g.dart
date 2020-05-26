@@ -19,6 +19,10 @@ class _$User extends User {
   final bool isVerified;
   @override
   final Pet pet;
+  @override
+  final BuiltList<Pet> pets;
+  @override
+  final UserStatus userStatus;
 
   factory _$User([void Function(UserBuilder) updates]) =>
       (new UserBuilder()..update(updates)).build();
@@ -29,7 +33,9 @@ class _$User extends User {
       this.phoneNumber,
       this.address,
       this.isVerified,
-      this.pet})
+      this.pet,
+      this.pets,
+      this.userStatus})
       : super._() {
     if (id == null) {
       throw new BuiltValueNullFieldError('User', 'id');
@@ -52,7 +58,9 @@ class _$User extends User {
         phoneNumber == other.phoneNumber &&
         address == other.address &&
         isVerified == other.isVerified &&
-        pet == other.pet;
+        pet == other.pet &&
+        pets == other.pets &&
+        userStatus == other.userStatus;
   }
 
   @override
@@ -60,11 +68,15 @@ class _$User extends User {
     return $jf($jc(
         $jc(
             $jc(
-                $jc($jc($jc(0, id.hashCode), name.hashCode),
-                    phoneNumber.hashCode),
-                address.hashCode),
-            isVerified.hashCode),
-        pet.hashCode));
+                $jc(
+                    $jc(
+                        $jc($jc($jc(0, id.hashCode), name.hashCode),
+                            phoneNumber.hashCode),
+                        address.hashCode),
+                    isVerified.hashCode),
+                pet.hashCode),
+            pets.hashCode),
+        userStatus.hashCode));
   }
 
   @override
@@ -75,7 +87,9 @@ class _$User extends User {
           ..add('phoneNumber', phoneNumber)
           ..add('address', address)
           ..add('isVerified', isVerified)
-          ..add('pet', pet))
+          ..add('pet', pet)
+          ..add('pets', pets)
+          ..add('userStatus', userStatus))
         .toString();
   }
 }
@@ -107,6 +121,14 @@ class UserBuilder implements Builder<User, UserBuilder> {
   PetBuilder get pet => _$this._pet ??= new PetBuilder();
   set pet(PetBuilder pet) => _$this._pet = pet;
 
+  ListBuilder<Pet> _pets;
+  ListBuilder<Pet> get pets => _$this._pets ??= new ListBuilder<Pet>();
+  set pets(ListBuilder<Pet> pets) => _$this._pets = pets;
+
+  UserStatus _userStatus;
+  UserStatus get userStatus => _$this._userStatus;
+  set userStatus(UserStatus userStatus) => _$this._userStatus = userStatus;
+
   UserBuilder();
 
   UserBuilder get _$this {
@@ -117,6 +139,8 @@ class UserBuilder implements Builder<User, UserBuilder> {
       _address = _$v.address;
       _isVerified = _$v.isVerified;
       _pet = _$v.pet?.toBuilder();
+      _pets = _$v.pets?.toBuilder();
+      _userStatus = _$v.userStatus;
       _$v = null;
     }
     return this;
@@ -146,12 +170,16 @@ class UserBuilder implements Builder<User, UserBuilder> {
               phoneNumber: phoneNumber,
               address: address,
               isVerified: isVerified,
-              pet: _pet?.build());
+              pet: _pet?.build(),
+              pets: _pets?.build(),
+              userStatus: userStatus);
     } catch (_) {
       String _$failedField;
       try {
         _$failedField = 'pet';
         _pet?.build();
+        _$failedField = 'pets';
+        _pets?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'User', _$failedField, e.toString());

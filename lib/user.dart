@@ -1,5 +1,7 @@
+import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value_example/pet.dart';
+import 'package:built_value_example/enums.dart';
 
 part 'user.g.dart';
 
@@ -16,6 +18,11 @@ abstract class User implements Built<User, UserBuilder> {
   bool get isVerified;
   @nullable
   Pet get pet;
+  @nullable
+  BuiltList<Pet> get pets;
+  @nullable
+  UserStatus get userStatus;
+
 
   User._();
   factory User([void Function(UserBuilder) updates]) = _$User;
